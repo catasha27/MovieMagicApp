@@ -7,6 +7,7 @@ import './App.css'
 function App() {
 
   const apiKey = import.meta.env.VITE_MOVIE_API_KEY
+  const apiToken = import.meta.env.VITE_MOVIE_API_TOKEN
   const [count, setCount] = useState(0)
 
   return (
