@@ -1,39 +1,34 @@
-import { useState } from 'react'
-import 'primeicons/primeicons.css';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/tailwind-light/theme.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header.jsx";
+import Home from "./components/Home.jsx";
+import LatestReleases from "./components/LatestReleases.jsx";
+import Populars from "./components/Populars.jsx";
+import Search from "./components/Search.jsx";
+import Favorites from "./components/Favorites.jsx";
+import Detail from "./components/Detail.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
-
-  const apiKey = import.meta.env.VITE_MOVIE_API_KEY
-  const apiToken = import.meta.env.VITE_MOVIE_API_TOKEN
-  const [count, setCount] = useState(0)
+  const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
+  const apiToken = import.meta.env.VITE_MOVIE_API_TOKEN;
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/latest-movies" element={<LatestReleases />} />
+        <Route path="/populars" element={<Populars />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/detail" element={<Detail />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
