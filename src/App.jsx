@@ -12,9 +12,6 @@ import Detail from "./components/Detail.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
-  const apiKey = import.meta.env.VITE_MOVIE_API_KEY;
-  const apiToken = import.meta.env.VITE_MOVIE_API_TOKEN;
-
   return (
     <BrowserRouter>
       <Header />
@@ -24,7 +21,7 @@ function App() {
         <Route path="/populars" element={<Populars />} />
         <Route path="/search" element={<Search />} />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
       <Footer />
     </BrowserRouter>
