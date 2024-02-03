@@ -46,7 +46,7 @@ export default function Header() {
     <div className="flex flex-col mr-5">
       <img
         alt="logo"
-        src="/public/movie-favicon.svg"
+        src="/movie-favicon.svg"
         height="40"
         className="mr-2 mb-2"
       ></img>
