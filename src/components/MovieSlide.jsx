@@ -12,18 +12,18 @@ export default function MovieSlide({ id, title, backdrop_path }) {
 
   return (
     <div className="flex flex-row justify-center pt-0 mt-0">
-      {/* <Card title={title} header={header}> */}
-      <Link
-        to={`/detail/${id}`}
-        rel="noopener noreferrer"
-        severity="info"
-        size="small"
-        className="p-button font-bold"
-      >
-        {" "}
-        Más info
-      </Link>
-      {/* </Card> */}
+      <Card title={title} header={header}>
+        <Link
+          to={`/detail/${id}`}
+          rel="noopener noreferrer"
+          severity="info"
+          size="small"
+          className="p-button font-bold"
+        >
+          {" "}
+          Más info
+        </Link>
+      </Card>
     </div>
   );
 }
