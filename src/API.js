@@ -58,3 +58,32 @@ export const useMovie = (id) => {
 
   return [movie, trailer];
 };
+
+export const useSearch = (query, page = 1) => {
+  const [movies, setMovies] = useState([]);
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [totalResults, setTotalResults] = useState(1);
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 500);
+
+    return () => clearTimeout(id);
+  }, [query, setDebouncedQuery]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${debouncedQuery}&include_adult=false&language=es-MX&page=${page}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setMovies(response.results);
+        setTotalResults(response.total_pages);
+      })
+      .catch((err) => console.error(err));
+  }, [debouncedQuery, page]);
+
+  return [movies, totalResults];
+};
