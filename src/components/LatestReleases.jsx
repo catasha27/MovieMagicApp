@@ -1,4 +1,4 @@
-import { useMovies } from "../API";
+import { useMovies } from "../hooks/API";
 import { useState } from "react";
 import { Paginator } from "primereact/paginator";
 import ContainMovieCard from "./ContainMovieCard";

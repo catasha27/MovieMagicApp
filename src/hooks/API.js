@@ -11,6 +11,9 @@ const options = {
   },
 };
 
+// Due to a TMDB API  limitation, the maximun number of pages accesible are 500 as read in the following message error : "Invalid page: Pages start at 1 and max at 500. They are expected to be an integer."
+const API_LIMIT = 500 * 20;
+
 export const useMovies = (category, page = 1) => {
   const [movies, setMovies] = useState([]);
   const [totalResults, setTotalResults] = useState(1);
@@ -23,7 +26,7 @@ export const useMovies = (category, page = 1) => {
       .then((response) => response.json())
       .then((response) => {
         setMovies(response.results);
-        setTotalResults(response.total_pages);
+        setTotalResults(Math.min(response.total_results, API_LIMIT));
       })
       .catch((err) => console.error(err));
   }, [category, page]);

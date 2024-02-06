@@ -1,4 +1,4 @@
-import { useMovies } from "../API";
+import { useMovies } from "../hooks/API";
 import { Link } from "react-router-dom";
 import { Carousel } from "primereact/carousel";
 import MovieSlide from "./MovieSlide";

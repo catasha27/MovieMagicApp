@@ -1,4 +1,4 @@
-import { useSearch } from "../API";
+import { useSearch } from "../hooks/API";
 import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Paginator } from "primereact/paginator";
