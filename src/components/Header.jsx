@@ -17,7 +17,7 @@ export default function Header() {
       },
     },
     {
-      label: "Ultimos Lanzamientos",
+      label: "Últimos Lanzamientos",
       command: () => {
         navigate("/latest-movies");
       },
@@ -29,7 +29,7 @@ export default function Header() {
       },
     },
     {
-      label: "Favoritos",
+      label: "Favoritas",
       command: () => {
         navigate("/favorites");
       },
@@ -44,18 +44,13 @@ export default function Header() {
 
   const start = (
     <div className="flex flex-col mr-5">
-      <img
-        alt="logo"
-        src="/movie-favicon.svg"
-        height="40"
-        className="mr-2 mb-2"
-      ></img>
-      <h1 className="font-bold">MOVIE MAGIC</h1>
+      <img alt="logo" src="/movie-favicon.svg" className="mr-2 mb-2 h-14"></img>
+      <h1 className="font-bold text-2xl">MOVIE MAGIC</h1>
     </div>
   );
 
   return (
-    <div className="w-screen mb-0 sticky top-0">
+    <div className="w-screen mb-0 sticky top-0 z-5">
       <Menubar model={items} start={start} />
     </div>
   );

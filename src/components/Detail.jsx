@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
-import { useMovie } from "../API";
+import { useContext } from "react";
+import { FavoriteContext } from "../context/FavoriteContext";
+import { useMovie } from "../hooks/API";
 import { Card } from "primereact/card";
 import { BsCameraReels, BsCameraReelsFill } from "react-icons/bs";
 
 export default function Detail() {
   const params = useParams();
-
   const [movie, trailer] = useMovie(params.id);
+  const { addFav, removeFav, isFav } = useContext(FavoriteContext);
 
   if (!movie) return;
 
@@ -52,12 +54,12 @@ export default function Detail() {
         footer={footer}
       >
         <div className="flex flex-col text-left max-w-[400px] text-white">
-          <h2 className="font-bold text-2xl mb-5">
+          <h2 className="font-bold text-2xl uppercase mb-5">
             {title}{" "}
             <span className="ml-8 text-l">({release_date.slice(0, 4)})</span>
           </h2>
 
-          <h4 className="font-bold text-l">Sinopsis</h4>
+          <h4 className="font-bold text-l leading-3">Sinopsis</h4>
           <p>{overview}</p>
           <ul className="mt-2">
             <h4 className="font-bold text-l">Géneros</h4>
@@ -65,10 +67,15 @@ export default function Detail() {
               <li key={genre.id}>{genre.name}</li>
             ))}{" "}
           </ul>
-          <span style={{ fontSize: "1.5rem" }}>
-            <BsCameraReels />
-            <BsCameraReelsFill />
-          </span>
+          {isFav(id) ? (
+            <span className="text-2xl" onClick={() => removeFav(id)}>
+              <BsCameraReelsFill className="text-blue-500" />
+            </span>
+          ) : (
+            <span className="text-2xl" onClick={() => addFav(movie)}>
+              <BsCameraReels />
+            </span>
+          )}
         </div>
       </Card>
     </>
