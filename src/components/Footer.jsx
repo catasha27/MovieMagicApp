@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="card flex justify-center statitc bottom-0">
         <span>
           {" "}
-          Made with ♥ by{" "}
+          Hecho con ♥ por{" "}
           <a
             href="https://github.com/catasha27"
             target="_blank"
