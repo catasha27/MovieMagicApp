@@ -28,7 +28,7 @@ export default function Detail() {
 
   const header = (
     <img
-      className="h-[30rem]"
+      className="w-72 min-[400px]:w-96 "
       alt="Card"
       src={`https://image.tmdb.org/t/p/original/${poster_path}`}
     />
@@ -38,13 +38,12 @@ export default function Detail() {
     <div>
       <Button
         className="flex align-middle font-medium text-lg text-white p-2"
+        label="Ver trailer"
         icon="pi pi-play text-xl"
         rounded
         text
         raised
-        severity="secondary"
         aria-label="Trailer"
-        label="Ver trailer"
         onClick={() => setVisible(true)}
       />
       <Dialog
@@ -74,18 +73,18 @@ export default function Detail() {
       <Card
         pt={{
           header: "flex justify-center items-center",
-          body: "flex flex-row",
-          footer: "pt-8",
+          body: "flex flex-col items-center sm:items-baseline justify-center sm:flex-row",
+          footer: "p-0 lg:pt-8",
         }}
-        className={`flex flex-row justify-center align-middle gap-6 h-[600px] bg-slate-900/60 bg-blend-darken bg-cover `}
+        className={`flex flex-col lg:flex-row justify-center align-middle gap-2 lg:gap-6 h-auto lg:h-[600px] bg-slate-900/60 bg-blend-darken bg-cover rounded-none	`}
         style={{
           backgroundImage: `url('https://image.tmdb.org/t/p/original/${backdrop_path}')`,
         }}
         header={header}
         footer={footer}
       >
-        <div className="flex flex-col text-left max-w-[400px] text-white pt-4">
-          <h2 className="font-bold text-3xl uppercase mb-5">
+        <div className="flex flex-col text-left max-w-[400px] text-white pt-2 lg:pt-4">
+          <h2 className="font-medium min-[425]:font-bold text-2xl sm:text-3xl uppercase mb-5">
             {title}{" "}
             <span className="ml-8 font-medium text-2xl">
               ({release_date.slice(0, 4)})
@@ -97,8 +96,7 @@ export default function Detail() {
           <div className="flex my-4 gap-4">
             {genres.map((genre) => (
               <Tag
-                className="font-medium text-base px-3"
-                // severity="success"
+                className="font-normal sm:font-medium text-sm sm:text-base px-2 sm:px-3"
                 key={genre.id}
                 value={genre.name}
                 rounded
@@ -107,14 +105,14 @@ export default function Detail() {
           </div>
           {isFav(id) ? (
             <span
-              className="text-2xl border-2 rounded-full p-2 w-fit  bg-slate-900/20 bg-blend-darken"
+              className="text-2xl border rounded-full p-2 w-fit  bg-gray/60 bg-blend-lighten hover:scale-125	"
               onClick={() => removeFav(id)}
             >
               <BsCameraReelsFill className="text-[#4f46e5]" />
             </span>
           ) : (
             <span
-              className="text-2xl border-2 rounded-full p-2 w-fit "
+              className="text-2xl border hover:border-[#4f46e5] rounded-full p-2 w-fit hover:scale-125 "
               onClick={() => addFav(movie)}
             >
               <BsCameraReels />

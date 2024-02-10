@@ -1,12 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Sigmar&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    .font-outline-2 {
-      -webkit-text-stroke: 2px purple;
-    }
-    .font-outline-4 {
-      -webkit-text-stroke: 4px purple;
-    }
+
+  .title1 {
+    font-family: 'Limelight', sans-serif;
+  }
+  .title2 {
+    font-family: 'Sigmar', sans-serif;
+  }
+
+  .font-outline-1 {
+    -webkit-text-stroke: 1px #4f46e5;
+  }
+  .font-outline-2 {
+    -webkit-text-stroke: 2px #4f46e5;
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 4px #4f46e5;
+  }
   }

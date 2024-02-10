@@ -11,30 +11,30 @@ export default function MovieCard({ movie }) {
   const header = (
     <img
       className="h-[30rem]"
-      alt="Card"
+      alt="logo"
       src={`https://image.tmdb.org/t/p/original/${poster_path}`}
     />
   );
 
   return (
     <>
-      <Link to={`/detail/${id}`}>
+      <Link to={`/detail/${id}`} className="w-72 min-[400px]:w-80">
         <Card header={header}>
-          <div className="flex justify-center">
-            <h2 className="font-bold text-2xl mr-5">{title}</h2>
+          <div className="flex justify-center h-12 sm:h-20">
+            <h2 className="font-medium text-xl mr-5 line-clamp-3">{title}</h2>
             {isFav(id) ? (
               <span
-                className="text-2xl"
+                className="text-2xl border rounded-full p-2 h-10 w-fit hover:scale-125	"
                 onClick={(e) => {
                   e.preventDefault();
                   removeFav(id);
                 }}
               >
-                <BsCameraReelsFill className="text-blue-500 font-outline-4" />
+                <BsCameraReelsFill className="text-[#4f46e5]" />
               </span>
             ) : (
               <span
-                className="text-2xl"
+                className="text-2xl border hover:border-[#4f46e5] rounded-full p-2 h-10 w-fit hover:scale-125 "
                 onClick={(e) => {
                   e.preventDefault();
                   addFav(movie);
