@@ -15,20 +15,33 @@ export default function Search() {
 
   return (
     <>
-      <h2 className="font-bold text-3xl my-4">Busca tu película</h2>
-      <InputText value={value} onChange={(e) => setValue(e.target.value)} />
+      <h2 className="font-bold text-3xl min-[500px]:text-4xl text-[#4f46e5] my-8">
+        Busca tu película
+      </h2>
+      <InputText
+        value={value}
+        className="p-3 text-xl border-2 mb-2"
+        onChange={(e) => setValue(e.target.value)}
+      />
       {!!movies.length && (
-        <>
+        <div className="mt-8">
           <ContainMovieCard movies={movies} />
-          <div className="card">
+          <div className=" card my-6">
             <Paginator
               first={first}
               rows={20}
               totalRecords={totalResults}
               onPageChange={onPageChange}
+              pt={{
+                pageButton: ({ context }) => ({
+                  className: context.active
+                    ? "bg-[#4f46e5]/50 focus:ring-0 active:ring-0"
+                    : "bg-none",
+                }),
+              }}
             />
           </div>
-        </>
+        </div>
       )}
     </>
   );

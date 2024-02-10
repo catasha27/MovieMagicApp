@@ -13,14 +13,23 @@ export default function Populars() {
 
   return (
     <>
-      <h2 className="font-bold text-3xl my-4">Películas Populares</h2>
+      <h2 className="font-bold text-3xl min-[500px]:text-4xl text-[#4f46e5] my-8">
+        Películas Populares
+      </h2>
       <ContainMovieCard movies={movies} />
-      <div className="card">
+      <div className="card my-6">
         <Paginator
           first={first}
           rows={20}
           totalRecords={totalResults}
           onPageChange={onPageChange}
+          pt={{
+            pageButton: ({ context }) => ({
+              className: context.active
+                ? "bg-[#4f46e5]/50 focus:ring-0 active:ring-0"
+                : "bg-none",
+            }),
+          }}
         />
       </div>
     </>

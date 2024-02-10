@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
     <>
-      <div className="card flex justify-center statitc bottom-0">
+      <div className=" flex justify-center w-full py-10 statitc bottom-0 ">
         <span>
           {" "}
-          Hecho con ♥ por{" "}
+          &copy;2024 Hecho con ♥ por{" "}
           <a
             href="https://github.com/catasha27"
             target="_blank"
@@ -13,6 +13,7 @@ export default function Footer() {
           >
             Sharime Cahuas{" "}
           </a>
+          | Todos los Derechos Reservados
         </span>
       </div>
     </>
