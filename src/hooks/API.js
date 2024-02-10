@@ -17,8 +17,10 @@ const API_LIMIT = 500 * 20;
 export const useMovies = (category, page = 1) => {
   const [movies, setMovies] = useState([]);
   const [totalResults, setTotalResults] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetch(
       `https://api.themoviedb.org/3/movie/${category}?language=es-ES&page=${page}`,
       options
@@ -27,21 +29,31 @@ export const useMovies = (category, page = 1) => {
       .then((response) => {
         setMovies(response.results);
         setTotalResults(Math.min(response.total_results, API_LIMIT));
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       })
       .catch((err) => console.error(err));
   }, [category, page]);
 
-  return [movies, totalResults];
+  return { movies, totalResults, loading };
 };
 
 export const useMovie = (id) => {
   const [movie, setMovie] = useState();
   const [trailer, setTrailer] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`https://api.themoviedb.org/3/movie/${id}?language=es-MX`, options)
       .then((response) => response.json())
-      .then((response) => setMovie(response))
+      .then((response) => {
+        setMovie(response);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      })
       .catch((err) => console.error(err));
   }, [id]);
 
@@ -59,13 +71,14 @@ export const useMovie = (id) => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  return [movie, trailer];
+  return { movie, trailer, loading };
 };
 
 export const useSearch = (query, page = 1) => {
   const [movies, setMovies] = useState([]);
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [totalResults, setTotalResults] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -76,6 +89,11 @@ export const useSearch = (query, page = 1) => {
   }, [query, setDebouncedQuery]);
 
   useEffect(() => {
+    if (!debouncedQuery) {
+      setMovies([]);
+      return;
+    }
+    setLoading(true);
     fetch(
       `https://api.themoviedb.org/3/search/movie?query=${debouncedQuery}&include_adult=false&language=es-MX&page=${page}`,
       options
@@ -84,9 +102,12 @@ export const useSearch = (query, page = 1) => {
       .then((response) => {
         setMovies(response.results);
         setTotalResults(response.total_pages);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       })
       .catch((err) => console.error(err));
   }, [debouncedQuery, page]);
 
-  return [movies, totalResults];
+  return { movies, totalResults, loading };
 };

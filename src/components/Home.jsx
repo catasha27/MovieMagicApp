@@ -1,13 +1,17 @@
 import { useMovies } from "../hooks/API";
 import { Link } from "react-router-dom";
 import { Carousel } from "primereact/carousel";
-import { useRef } from "react";
+import Loader from "./Loader";
 import MovieSlide from "./MovieSlide";
 
 export default function Home() {
-  const [populars] = useMovies("popular");
-  const [topRated] = useMovies("top_rated");
-  const [latest] = useMovies("now_playing");
+  const { movies: populars, loading: loadingPopulars } = useMovies("popular");
+  const { movies: topRated, loading: loadingTopRated } = useMovies("top_rated");
+  const { movies: latest, loading: loadingLatest } = useMovies("now_playing");
+
+  const loading = loadingPopulars && loadingTopRated && loadingLatest;
+
+  if (loading) return <Loader />;
 
   return (
     <>

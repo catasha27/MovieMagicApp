@@ -6,15 +6,16 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Card } from "primereact/card";
 import { Tag } from "primereact/tag";
+import Loader from "./Loader";
 import { BsCameraReels, BsCameraReelsFill } from "react-icons/bs";
 
 export default function Detail() {
   const params = useParams();
-  const [movie, trailer] = useMovie(params.id);
+  const { movie, trailer, loading } = useMovie(params.id);
   const { addFav, removeFav, isFav } = useContext(FavoriteContext);
   const [visible, setVisible] = useState(false);
 
-  if (!movie) return;
+  if (loading) return <Loader />;
 
   const {
     id,
